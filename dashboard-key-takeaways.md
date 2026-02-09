@@ -95,6 +95,55 @@ This means all values shown are **rolling sums** over the configured window (def
 
 ---
 
+## Data Analysis: MFE Screen Impressions (Panel Data)
+
+*Source: Panel "Manual Fare Entry Screen Impression" — Inspect > Data export*
+*Time range: 2025-11-11 to 2026-02-09 (90 days queried)*
+
+### Summary Statistics
+
+| Metric | Value |
+|--------|-------|
+| **Total sampled impressions (30-min window sums)** | **1,611,658** |
+| **Active data period** | 2026-02-04 to 2026-03-16 (41 days) |
+| **First 55 days** | Zero activity (no MFE impressions recorded) |
+| **Data points** | 732 total, 325 non-zero |
+| **Peak single sample** | 9,263 (Sat 2026-03-14, ~09:48 UTC) |
+| **Lowest non-zero sample** | 702 (Sun 2026-02-08, ~17:30 UTC) |
+| **Mean (active samples)** | ~4,959 per 30-min window |
+
+### Estimated Total Impressions
+
+Since each data point is a **30-minute moving window sum** sampled every **~2.95 hours**, only ~17% of elapsed time is captured. Extrapolating:
+
+> **Estimated total MFE screen impressions: ~9.5 million over 41 days (~232,000/day)**
+
+This is a rough estimate; the actual figure depends on intraday distribution patterns.
+
+### Trend: Growing (+25% over the period)
+
+| Period | Avg per sample | Change |
+|--------|---------------|--------|
+| First third (days 1-14) | 4,397 | baseline |
+| Middle third (days 15-27) | 4,797 | +9.1% |
+| Last third (days 28-41) | 5,677 | +29.1% |
+
+Full-week-over-week growth was consistently positive: **+10.3%, +3.3%, +10.3%, +3.9%, +12.0%**.
+
+### Weekly Pattern
+
+- **Weekends are slightly busier** than weekdays (avg daily sum: weekday 38,644 vs weekend 40,916 — weekends **+5.6% higher**)
+- **Fridays and Saturdays** are peak days
+- Strong intraday cyclicality with daily peak-to-trough ranges of 4,500–6,000
+
+### Intraday Pattern (UTC)
+
+- **Peak hours**: ~09:00–10:00 UTC (avg 7,000–7,400 per sample)
+- **Trough hours**: ~17:00–19:00 UTC (avg 1,500–2,500 per sample)
+- This pattern suggests the primary user base is in a timezone where 09–10 UTC corresponds to business/morning hours
+
+---
+
 ## Suggested Monitoring Focus Areas
 
 - **Conversion rate**: Compare `entry_screen_impression` against `trip_completion` to measure funnel completion
