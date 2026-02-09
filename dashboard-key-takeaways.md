@@ -144,6 +144,49 @@ Full-week-over-week growth was consistently positive: **+10.3%, +3.3%, +10.3%, +
 
 ---
 
+## Data Analysis: Platform Comparison (iOS vs Android)
+
+*Source: Panels "[iOS][Temp]" (panelId 41) and "[Android][Temp]" (panelId 40) — Inspect > Data export*
+
+### Platform Volume Split
+
+| Metric | Android | iOS | Combined |
+|--------|---------|-----|----------|
+| **Screen impressions (sampled)** | 1,279,286 (80.5%) | 309,889 (19.5%) | 1,589,175 |
+| **Trip completions (sampled)** | 1,216,473 (81.5%) | 275,238 (18.5%) | 1,491,711 |
+| **Peak sample** | 7,307 | 2,011 | — |
+
+> Android + iOS impressions (1,589,175) are ~22,483 less than the combined all-OS total (1,611,658). The ~1.4% delta likely represents other platforms or aggregation rounding.
+
+### Conversion Rates (Impression → Trip Completion)
+
+| Platform | Impressions | Completions | Conversion Rate |
+|----------|-------------|-------------|-----------------|
+| **Android** | 1,279,286 | 1,216,473 | **95.1%** |
+| **iOS** | 309,889 | 275,238 | **88.8%** |
+| **Combined** | 1,589,175 | 1,491,711 | **93.9%** |
+
+**Android outperforms iOS by 6.3 percentage points** in impression-to-completion conversion. This is a meaningful gap — iOS drivers who open the MFE screen are notably more likely to abandon before completing the trip.
+
+### Estimated Total Trip Completions
+
+| Platform | Sampled Sum | Est. Total (41 days) | Est. Daily |
+|----------|-------------|----------------------|------------|
+| **Android** | 1,216,473 | ~7.2 million | ~179,700/day |
+| **iOS** | 275,238 | ~1.6 million | ~40,700/day |
+| **Combined** | 1,491,711 | **~8.8 million** | **~220,300/day** |
+
+### Platform Parity Insights
+
+- **Android : iOS ratio** is ~4.1x for impressions but ~4.4x for completions, reflecting Android's higher conversion rate
+- Android maintains relatively more activity during low-traffic periods (trough ratio ~4.5-4.9x vs peak ratio ~3.6x), suggesting different geographic or diurnal usage patterns
+- **iOS conversion gap of 6.3pp warrants investigation** — possible causes include:
+  - UX differences between iOS and Android MFE flows
+  - iOS-specific bugs or performance issues
+  - Different driver demographics/behavior on iOS vs Android
+
+---
+
 ## Suggested Monitoring Focus Areas
 
 - **Conversion rate**: Compare `entry_screen_impression` against `trip_completion` to measure funnel completion
